@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina | Next-Gen E-Commerce Experience</title>
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/src/style.css" class="style">
+    <script src="/src/app.js"></script>
+
+    <!-- ==========================================
+         EMBEDDED STYLES (styles.css)
+         ========================================== -->
+    
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-cube"></i></div>
+                <span>Lumina<span style="color:var(--primary)">.</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active">Home</a></li>
+                <li><a href="#catalog" class="nav-link">Shop</a></li>
+                <li><a href="#catalog" class="nav-link">Categories</a></li>
+                <li><a href="#footer" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+            </div>
+
+            <div class="action-btns">
+                <button class="icon-btn" id="wishlistBtn">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </button>
+                <button class="icon-btn" id="cartBtn">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-container">
+            <div>
+                <div class="hero-tag"><i class="fa-solid fa-bolt"></i> Exclusive Deal of the Week</div>
+                <h1 class="hero-title">Experience <span>Next-Gen</span> Tech & Style</h1>
+                <p class="hero-desc">Elevate your workspace and modern lifestyle with precision-engineered products curated for innovation.</p>
+                
+                <div class="timer-box">
+                    <div class="timer-unit"><span class="timer-val" id="timerDays">02</span><span class="timer-label">Days</span></div>
+                    <div class="timer-unit"><span class="timer-val" id="timerHours">14</span><span class="timer-label">Hours</span></div>
+                    <div class="timer-unit"><span class="timer-val" id="timerMins">45</span><span class="timer-label">Mins</span></div>
+                    <div class="timer-unit"><span class="timer-val" id="timerSecs">30</span><span class="timer-label">Secs</span></div>
+                </div>
+
+                <a href="#catalog" class="btn-primary">Shop Collection <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="hero-banner-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop" alt="Featured ANC Headphones" class="hero-img">
+                <h3 style="color:var(--white); font-size:1.2rem; font-weight:700;">Lumina Sonic Pro Wireless ANC</h3>
+                <p style="color:#94a3b8; font-size:0.9rem;">Special Promotional Offer - Save 25% Today</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <main class="catalog" id="catalog">
+        <div class="catalog-header">
+            <div>
+                <span style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.8rem;">Catalog</span>
+                <h2 class="section-title">Explore Featured Products</h2>
+            </div>
+
+            <div class="filter-pills" id="filterPills">
+                <button class="pill-btn active" data-category="All">All</button>
+                <button class="pill-btn" data-category="Electronics">Electronics</button>
+                <button class="pill-btn" data-category="Fashion">Fashion</button>
+                <button class="pill-btn" data-category="Home">Home & Living</button>
+                <button class="pill-btn" data-category="Accessories">Accessories</button>
+            </div>
+
+            <select class="sort-select" id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Dynamically populating via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Drawer Overlay -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <!-- Sliding Cart Drawer -->
+    <aside class="drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title"><i class="fa-solid fa-bag-shopping" style="color:var(--primary)"></i> Your Cart</h3>
+            <button class="close-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="cartItemsContainer"></div>
+        <div class="drawer-footer">
+            <div class="promo-box">
+                <input type="text" id="promoInput" class="promo-input" placeholder="Promo code (DISCOUNT10)">
+                <button class="pill-btn" id="applyPromoBtn">Apply</button>
+            </div>
+            <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+            <div class="summary-row"><span>Discount (10%)</span><span id="cartDiscount">-$0.00</span></div>
+            <div class="summary-row"><span>Shipping</span><span id="cartShipping">$10.00</span></div>
+            <div class="summary-row total"><span>Total</span><span id="cartGrandTotal">$0.00</span></div>
+            <button class="btn-primary" id="checkoutBtn" style="width:100%; justify-content:center; margin-top:1rem;">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Sliding Wishlist Drawer -->
+    <aside class="drawer" id="wishlistDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title"><i class="fa-solid fa-heart" style="color:var(--danger)"></i> Saved Wishlist</h3>
+            <button class="close-btn" id="closeWishlistBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="wishlistItemsContainer"></div>
+    </aside>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeQuickViewBtn" style="position:absolute; top:1rem; right:1rem;"><i class="fa-solid fa-xmark"></i></button>
+            <div class="quick-view-grid">
+                <img id="qvImage" src="" alt="" style="width:100%; border-radius:var(--radius-md); aspect-ratio:1; object-fit:cover;">
+                <div>
+                    <span id="qvCategory" class="product-cat">Category</span>
+                    <h2 id="qvTitle" style="font-size:1.5rem; margin:0.5rem 0;">Product Title</h2>
+                    <div class="rating-box"><i class="fa-solid fa-star"></i><span id="qvRating">4.8</span></div>
+                    <div class="price-curr" id="qvPrice" style="font-size:1.75rem; margin-bottom:1rem;">$0.00</div>
+                    <p id="qvDesc" style="color:var(--slate-600); font-size:0.9rem; margin-bottom:1.5rem;"></p>
+                    <button class="btn-primary" id="qvAddToCartBtn"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content" style="max-width:550px;">
+            <button class="close-btn" id="closeCheckoutBtn" style="position:absolute; top:1rem; right:1rem;"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="margin-bottom:1.5rem;">Checkout</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" required placeholder="Alex Johnson">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Shipping Address</label>
+                    <input type="text" class="form-control" required placeholder="123 Innovation Way">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <select class="form-control">
+                        <option>Credit Card (Visa / Mastercard)</option>
+                        <option>PayPal</option>
+                        <option>Cash on Delivery</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Complete Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+</body>
+</html>
